@@ -1,20 +1,18 @@
 plugins {
-    id(AndroidGradle.ANDROID_APPLICATION)
+    id(AndroidGradle.ANDROID_LIBRARY)
     kotlin(Kotlin.ANDROID_PLUGIN)
 }
 
 android {
-    namespace = AndroidPrefs.NAMESPACE
+    namespace = AndroidPrefs.CORE_NAMESPACE
     compileSdk = AndroidPrefs.COMPILE_SDK
 
     defaultConfig {
-        applicationId = AndroidPrefs.NAMESPACE
         minSdk = AndroidPrefs.MIN_SDK
         targetSdk = AndroidPrefs.TARGET_SDK
-        versionCode = AndroidPrefs.VERSION_CODE
-        versionName = AndroidPrefs.VERSION_NAME
 
         testInstrumentationRunner = AndroidPrefs.TEST_INSTRUMENTATION_RUNNER
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -33,9 +31,6 @@ android {
     kotlinOptions {
         jvmTarget = JVM.TARGET
     }
-    viewBinding {
-        enable = true
-    }
 }
 
 dependencies {
@@ -52,6 +47,4 @@ dependencies {
 
     androidTestImplementation(AppDependencies.JUnitAndroidExt.JUNIT)
     androidTestImplementation(AppDependencies.EspressoAndroid.CORE)
-
-    implementation(project(":core"))
 }

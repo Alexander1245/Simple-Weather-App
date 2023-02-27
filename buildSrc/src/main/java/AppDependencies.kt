@@ -50,4 +50,13 @@ object AppDependencies {
 
         const val CORE = "androidx.core:core-ktx:$VERSION"
     }
+
+    object CoreMVVM {
+        const val VERSION = "1.2"
+
+        const val COROUTINES = "com.github.Alexander1245.MVVMLib:coroutines:$VERSION"
+        const val MVVM_CORE = "com.github.Alexander1245.MVVMLib:mvvm-core:$VERSION"
+
+        val IMPLEMENTATIONS = listOf(COROUTINES, MVVM_CORE)
+    }
 }
