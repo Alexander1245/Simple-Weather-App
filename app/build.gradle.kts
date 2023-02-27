@@ -1,20 +1,20 @@
 plugins {
-    id("com.android.application")
-    kotlin("android")
+    id(AndroidGradle.ANDROID_APPLICATION)
+    kotlin(Kotlin.ANDROID_PLUGIN)
 }
 
 android {
-    namespace = "com.dart69.simpleweatherapp"
-    compileSdk = 33
+    namespace = AndroidPrefs.NAMESPACE
+    compileSdk = AndroidPrefs.COMPILE_SDK
 
     defaultConfig {
-        applicationId = "com.dart69.simpleweatherapp"
-        minSdk = 24
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = AndroidPrefs.NAMESPACE
+        minSdk = AndroidPrefs.MIN_SDK
+        targetSdk = AndroidPrefs.TARGET_SDK
+        versionCode = AndroidPrefs.VERSION_CODE
+        versionName = AndroidPrefs.VERSION_NAME
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = AndroidPrefs.TEST_INSTRUMENTATION_RUNNER
     }
 
     buildTypes {
@@ -28,7 +28,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JVM.TARGET
     }
     viewBinding {
         enable = true
@@ -37,13 +37,14 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.8.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
-    implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation(AppDependencies.AndroidXCore.CORE)
+    implementation(AppDependencies.AppCompat.APP_COMPAT)
+    implementation(AppDependencies.Material.MATERIAL)
+    implementation(AppDependencies.ConstraintLayout.CONSTRAINT_LAYOUT)
+    AppDependencies.Navigation.IMPLEMENTATIONS.forEach(::implementation)
+
+    testImplementation(AppDependencies.JUnit4.JUNIT)
+
+    androidTestImplementation(AppDependencies.JUnitAndroidExt.JUNIT)
+    androidTestImplementation(AppDependencies.EspressoAndroid.CORE)
 }
