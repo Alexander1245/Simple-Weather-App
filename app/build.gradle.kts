@@ -53,5 +53,6 @@ dependencies {
     androidTestImplementation(AppDependencies.JUnitAndroidExt.JUNIT)
     androidTestImplementation(AppDependencies.EspressoAndroid.CORE)
 
-    implementation(project(":core"))
+    implementation(project(":domain"))
+    implementation(project(":data"))
 }

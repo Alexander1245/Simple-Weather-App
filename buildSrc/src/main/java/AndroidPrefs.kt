@@ -1,7 +1,7 @@
 object AndroidPrefs {
     const val NAMESPACE = "com.dart69.simpleweatherapp"
 
-    const val CORE_NAMESPACE = "com.dart69.core"
+    const val DATA_NAMESPACE = "com.dart69.data"
 
     const val TARGET_SDK = 33
     const val COMPILE_SDK = TARGET_SDK

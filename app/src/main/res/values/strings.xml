@@ -7,8 +7,7 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="lorem_ipsum">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
         dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
         litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
@@ -43,4 +42,15 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="location_settings">Location settings</string>
+    <string name="find_your_location">Find your location</string>
+    <string name="choose_location">Choose location</string>
+    <string name="choose_your_location">Choose your location</string>
+    <string name="aqi_1d">AQI %1d</string>
+    <string name="temperature_limits">%1d° / %2d°</string>
+    <string name="temperature">%1d°</string>
+    <string name="cancel">Cancel</string>
+    <string name="determine">Determine</string>
+    <string name="find_location">Find location</string>
+    <string name="choose_on_map">Choose on map</string>
 </resources>
