@@ -20,7 +20,10 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -41,10 +44,15 @@ dependencies {
     implementation(AppDependencies.AppCompat.APP_COMPAT)
     implementation(AppDependencies.Material.MATERIAL)
     implementation(AppDependencies.ConstraintLayout.CONSTRAINT_LAYOUT)
+
     AppDependencies.Navigation.IMPLEMENTATIONS.forEach(::implementation)
+    AppDependencies.CoreMVVM.IMPLEMENTATIONS.forEach(::implementation)
 
     testImplementation(AppDependencies.JUnit4.JUNIT)
 
     androidTestImplementation(AppDependencies.JUnitAndroidExt.JUNIT)
     androidTestImplementation(AppDependencies.EspressoAndroid.CORE)
+
+    implementation(project(":domain"))
+    implementation(project(":data"))
 }

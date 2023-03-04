@@ -50,4 +50,29 @@ object AppDependencies {
 
         const val CORE = "androidx.core:core-ktx:$VERSION"
     }
+
+    object CoreMVVM {
+        const val VERSION = "1.4"
+
+        const val COROUTINES = "com.github.Alexander1245.MVVMLib:coroutines:$VERSION"
+        const val MVVM_CORE = "com.github.Alexander1245.MVVMLib:mvvm-core:$VERSION"
+
+        val IMPLEMENTATIONS = listOf(COROUTINES, MVVM_CORE)
+    }
+
+    object Coroutines {
+        const val VERSION = "1.6.4"
+
+        const val CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$VERSION"
+        const val TEST = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$VERSION"
+    }
+
+    object Retrofit {
+        const val VERSION = "2.9.0"
+
+        const val RETROFIT = "com.squareup.retrofit2:retrofit:$VERSION"
+        const val GSON_CONVERTER = "com.squareup.retrofit2:converter-gson:$VERSION"
+
+        val IMPLEMENTATIONS = listOf(RETROFIT, GSON_CONVERTER)
+    }
 }
