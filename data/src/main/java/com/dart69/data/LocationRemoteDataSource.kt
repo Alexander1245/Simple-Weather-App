@@ -2,8 +2,11 @@ package com.dart69.data
 
 import com.dart69.data.models.CityLocationResponse
 
-interface LocationRemoteDataSource {
+interface LocationDataSource {
     suspend fun findLocations(location: String): List<CityLocationResponse>
+}
+
+interface LocationRemoteDataSource : LocationDataSource {
 
     class Default(
         private val locationApi: LocationApi,

@@ -53,4 +53,7 @@
     <string name="determine">Determine</string>
     <string name="find_location">Find location</string>
     <string name="choose_on_map">Choose on map</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nothing_to_show">Nothing to show</string>
 </resources>

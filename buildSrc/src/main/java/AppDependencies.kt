@@ -6,6 +6,9 @@ object AppDependencies {
         const val UI = "androidx.navigation:navigation-ui-ktx:$VERSION"
         const val FRAGMENT = "androidx.navigation:navigation-fragment-ktx:$VERSION"
 
+        const val ROOT_CLASSPATH = "androidx.navigation:navigation-safe-args-gradle-plugin:$VERSION"
+        const val APP_PLUGIN = "androidx.navigation.safeargs.kotlin"
+
         val IMPLEMENTATIONS = listOf(UI, FRAGMENT)
     }
 
@@ -52,7 +55,7 @@ object AppDependencies {
     }
 
     object CoreMVVM {
-        const val VERSION = "1.4"
+        const val VERSION = "1.7"
 
         const val COROUTINES = "com.github.Alexander1245.MVVMLib:coroutines:$VERSION"
         const val MVVM_CORE = "com.github.Alexander1245.MVVMLib:mvvm-core:$VERSION"
@@ -74,5 +77,20 @@ object AppDependencies {
         const val GSON_CONVERTER = "com.squareup.retrofit2:converter-gson:$VERSION"
 
         val IMPLEMENTATIONS = listOf(RETROFIT, GSON_CONVERTER)
+    }
+
+    object Hilt {
+        const val VERSION = "2.44"
+
+        const val PLUGIN = "com.google.dagger.hilt.android"
+
+        const val IMPLEMENTATION = "com.google.dagger:hilt-android:$VERSION"
+        const val KAPT_IMPL = "com.google.dagger:hilt-android-compiler:$VERSION"
+    }
+
+    object ViewBindingPropertyDelegate {
+        const val VERSION = "1.5.8"
+
+        const val NO_REFLECTION = "com.github.kirich1409:viewbindingpropertydelegate-noreflection:$VERSION"
     }
 }

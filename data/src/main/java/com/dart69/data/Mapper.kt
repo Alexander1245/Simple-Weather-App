@@ -13,6 +13,7 @@ class LocationModelMapper : Mapper<CityLocationResponse, CityLocation> {
         CityLocation(
             name = from.name,
             country = from.country,
+            state = from.state.orEmpty(),
             coordinates = Coordinates(
                 longitude = from.lon,
                 latitude = from.lat,

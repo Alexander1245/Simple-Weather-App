@@ -1,6 +1,9 @@
 plugins {
     id(AndroidGradle.ANDROID_APPLICATION)
     kotlin(Kotlin.ANDROID_PLUGIN)
+    kotlin(Kotlin.KAPT)
+    id(AppDependencies.Hilt.PLUGIN)
+    id(AppDependencies.Navigation.APP_PLUGIN)
 }
 
 android {
@@ -48,11 +51,22 @@ dependencies {
     AppDependencies.Navigation.IMPLEMENTATIONS.forEach(::implementation)
     AppDependencies.CoreMVVM.IMPLEMENTATIONS.forEach(::implementation)
 
+    AppDependencies.Retrofit.IMPLEMENTATIONS.forEach(::implementation)
+
     testImplementation(AppDependencies.JUnit4.JUNIT)
 
     androidTestImplementation(AppDependencies.JUnitAndroidExt.JUNIT)
     androidTestImplementation(AppDependencies.EspressoAndroid.CORE)
 
-    implementation(project(":domain"))
-    implementation(project(":data"))
+    implementation(AppDependencies.Hilt.IMPLEMENTATION)
+    kapt(AppDependencies.Hilt.KAPT_IMPL)
+
+    implementation(AppDependencies.ViewBindingPropertyDelegate.NO_REFLECTION)
+
+    implementation(project(Modules.DOMAIN))
+    implementation(project(Modules.DATA))
+}
+
+kapt {
+    correctErrorTypes = true
 }

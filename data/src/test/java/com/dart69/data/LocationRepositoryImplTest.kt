@@ -12,8 +12,7 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 
@@ -39,6 +38,8 @@ internal class FakeRemoteDataSource : LocationRemoteDataSource {
 
     companion object {
         val RUSSIA = CityLocationResponse("Russia", 1.0, null, 1.0, "", "")
+        val SARATOV = RUSSIA.copy(name = "Saratov")
+        val MOSCOW = RUSSIA.copy(name = "Moscow")
     }
 }
 
@@ -47,6 +48,8 @@ internal class LocationRepositoryImplTest {
     private lateinit var repository: LocationRepositoryImpl
     private val russia = LocationModelMapper().map(FakeRemoteDataSource.RUSSIA)
 
+    private fun flatMapResults(input: List<List<CityLocation>>): List<String> =
+        input.flatMap { list -> list.map { it.name } }
     @Before
     fun beforeEach() {
         repository = LocationRepositoryImpl(
@@ -76,7 +79,7 @@ internal class LocationRepositoryImplTest {
 
     @Test
     fun `searchLocation is distinct until changed`() = runBlocking {
-        val default = CityLocation("", "", Coordinates(0.0, 0.0))
+        val default = CityLocation("", "","", Coordinates(0.0, 0.0))
         val locations = listOf(
             List(3) { "Moscow" }.map { default.copy(name = it) },
             listOf(default.copy(name = "Saratov")),
@@ -97,6 +100,38 @@ internal class LocationRepositoryImplTest {
             repository.searchLocations(it)
         }
         assertEquals(expected.size, actual.await().size)
+        assertEquals(flatMapResults(expected), flatMapResults(actual.await()))
+    }
+
+    @Test
+    fun `test debounce`() = runBlocking {
+        val mapper = LocationModelMapper()
+        val firstLocations = listOf("Mos", "Mosc", "Moscow")
+        val secondLocations = listOf("Sara", "Saratov")
+        val expected = listOf(
+            Results.Loading(),
+            Results.Completed(listOf( mapper.map(FakeRemoteDataSource.MOSCOW))),
+            Results.Loading(),
+            Results.Completed(listOf(mapper.map(FakeRemoteDataSource.SARATOV)))
+        )
+        val actual = async {
+            repository.observeLocations().take(expected.size).toList()
+        }
+        firstLocations.forEach(repository::searchLocations)
+        delay(150L)
+        secondLocations.forEach(repository::searchLocations)
+        assertArrayEquals(expected.toTypedArray(), actual.await().toTypedArray())
+    }
+
+    @Test
+    fun `the observer returns an empty list if a location is blank`() = runBlocking {
+        val expected = emptyList<CityLocation>()
+        val actual = async { repository.observeLocations()
+            .filter { it is Results.Completed }
+            .map { it.takeCompleted()!! }
+            .first()
+        }
+        repository.searchLocations("    ")
         assertEquals(expected, actual.await())
     }
 }
