@@ -70,14 +70,25 @@
 
     <TextView
         android:id="@+id/textViewError"
-        style="@style/LargeBodyTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
         android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
         app:layout_constraintBottom_toBottomOf="@id/recyclerViewLocations"
         app:layout_constraintEnd_toEndOf="@id/recyclerViewLocations"
         app:layout_constraintStart_toStartOf="@id/recyclerViewLocations"
         app:layout_constraintTop_toTopOf="@id/recyclerViewLocations"
         tools:text="Some error occurred" />
+
+    <TextView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/hintTextView"
+        android:layout_width="wrap_content"
+        style="@style/LargeTitleTextView"
+        android:text="@string/nothing_to_show"
+        android:layout_height="wrap_content"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

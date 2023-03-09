@@ -6,4 +6,6 @@ object Kotlin {
     const val KOTLIN_JVM_PLUGIN = "jvm"
 
     const val STDLIB = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$VERSION"
+
+    const val KAPT = "kapt"
 }

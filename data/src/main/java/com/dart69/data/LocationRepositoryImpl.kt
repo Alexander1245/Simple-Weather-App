@@ -21,7 +21,11 @@ class LocationRepositoryImpl(
     private val locations = searchQuery
         .flatMapConcat {
             resultsFlowOf {
-                remoteDataSource.findLocations(it).map(modelMappers::map)
+                if(it.isBlank()) {
+                    emptyList()
+                } else {
+                    remoteDataSource.findLocations(it).map(modelMappers::map)
+                }
             }.flowOn(dispatchers.io)
         }
 

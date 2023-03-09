@@ -1,8 +1,5 @@
 import java.net.URI
 
-include(":data")
-
-
 pluginManagement {
     repositories {
         google()
@@ -21,5 +18,6 @@ dependencyResolutionManagement {
 rootProject.name = "Simple Weather App"
 
 include(":app")
+include(":data")
 include(":domain")
 

@@ -45,5 +45,5 @@ dependencies {
     implementation(AppDependencies.CoreMVVM.COROUTINES)
     AppDependencies.Retrofit.IMPLEMENTATIONS.forEach(::implementation)
 
-    implementation(project(":domain"))
+    implementation(project(Modules.DOMAIN))
 }
